@@ -102,4 +102,3 @@ searchInput.addEventListener('input', debounce(updateGameList));
 platformFilter.addEventListener('change', updateGameList);
 
 initPage();
-
