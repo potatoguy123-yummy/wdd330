@@ -28,14 +28,12 @@
 
 .font-orbitron {
   font-family: "Orbitron", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
 
 .font-roboto {
   font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings: "wdth" 100;
@@ -49,7 +47,6 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings: "wdth" 100;
@@ -86,7 +83,6 @@ header {
   color: var(--primary-color);
   text-decoration: none;
   font-family: "Orbitron", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
@@ -133,7 +129,6 @@ header {
 .theme-toggle svg {
   width: 24px;
   height: 24px;
-  fill: var(--text-color);
 }
 
 /* Desktop: Logo | Spacer | Upload | About | Toggle */
@@ -286,7 +281,6 @@ main {
 
 .game-info h3, .footer-section h4 {
   font-family: "Orbitron", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
   margin-bottom: 0.5rem;
@@ -305,7 +299,6 @@ main {
 
 .game-info p, .footer-section p {
   font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-size: 0.875rem;

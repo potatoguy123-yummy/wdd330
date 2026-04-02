@@ -30,7 +30,7 @@ function formatGames(gameData) {
 function displayGames(gamesList) {
     gameGrid.innerHTML = gamesList.map(game => `
         <div class="game-card">
-            <img src="${game.img}" alt="${game.title}" onerror="this.src='${NO_IMAGE_URL}'">
+            <img src="${game.img}" alt="${game.title}" onerror="this.src='${NO_IMAGE_URL}'" loading="lazy">
             <div class="game-info">
                 <h3>${game.title}</h3>
                 <p>Platform: ${game.platform}</p>
