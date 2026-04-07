@@ -35,6 +35,8 @@ function formatGameDetails(gameData) {
         `<img src="https:${s.url.replace('t_thumb', 't_screenshot_big')}" alt="Screenshot" onerror="this.src='https://placehold.co/200x120?text=No+Screenshot'" draggable="false">`
     ).join('') || "";
 
+    const gameId = game.id || null;
+
     return `
         <div class="game-detail-header">
             <img src="${imageUrl}" alt="${name}" onerror="this.src='https://placehold.co/400x600?text=No+Cover+Available'">
@@ -49,6 +51,9 @@ function formatGameDetails(gameData) {
                 <p><strong>Rating Count:</strong> ${ratingCount}</p>
                 <p><strong>Total Rating:</strong> ${totalRating}</p>
                 <p><strong>Total Rating Count:</strong> ${totalRatingCount}</p>
+                <button id="wishlistButton" class="wishlist-button" data-game-id="${gameId}">
+                    Add to Wishlist
+                </button>
             </div>
         </div>
         <div class="game-detail-description">
@@ -79,6 +84,8 @@ function renderGameDetails(gameData) {
     gameDetail.innerHTML = formatGameDetails(gameData);
 }
 
+import { getWishlist, saveWishlist, isInWishlist, addToWishlist, removeFromWishlist } from './wishlist-utils.js';
+
 async function loadGameDetails() {
     const gameId = getGameIdFromUrl();
 
@@ -103,7 +110,8 @@ async function loadGameDetails() {
                 storyline,
                 total_rating,
                 total_rating_count,
-                screenshots.url;
+                screenshots.url,
+                id;
             where id = ${gameId};
         `;
 
@@ -116,9 +124,47 @@ async function loadGameDetails() {
         }
 
         renderGameDetails(data);
+
+        updateWishlistButton(gameId);
+        setupWishlistButtonEvent(gameId);
     } catch (err) {
         console.error("API Error:", err.message);
         document.getElementById('gameDetail').innerHTML = '<div class="status-message">Server error or Game not found.</div>';
+    }
+}
+
+function setupWishlistButtonEvent(gameId) {
+    const button = document.getElementById('wishlistButton');
+    if (button) {
+        button.addEventListener('click', () => {
+            handleWishlistToggle(gameId);
+        });
+    }
+}
+
+function handleWishlistToggle(gameId) {
+    const button = document.getElementById('wishlistButton');
+    if (isInWishlist(gameId)) {
+        removeFromWishlist(gameId);
+        button.textContent = 'Add to Wishlist';
+        button.classList.remove('in-wishlist');
+    } else {
+        addToWishlist(gameId);
+        button.textContent = 'Remove from Wishlist';
+        button.classList.add('in-wishlist');
+    }
+}
+
+function updateWishlistButton(gameId) {
+    const button = document.getElementById('wishlistButton');
+    if (button) {
+        if (isInWishlist(gameId)) {
+            button.textContent = 'Remove from Wishlist';
+            button.classList.add('in-wishlist');
+        } else {
+            button.textContent = 'Add to Wishlist';
+            button.classList.remove('in-wishlist');
+        }
     }
 }
 
