@@ -261,6 +261,7 @@ main {
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .game-card:hover {
@@ -304,6 +305,136 @@ main {
   font-size: 0.875rem;
   color: var(--text-color);
   opacity: 0.8;
+}
+
+.game-detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 769px) {
+  .game-detail-header {
+    flex-direction: row;
+  }
+}
+
+.game-detail-header img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: var(--border-color);
+}
+
+.game-detail-info {
+  flex: 1;
+}
+
+.game-detail-info h1 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-size: 1.8rem;
+}
+
+.game-detail-info p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.game-detail-description,
+.game-detail-storyline {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.game-detail-description h2,
+.game-detail-storyline h2 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.game-detail-description p,
+.game-detail-storyline p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.game-detail-screenshots {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.game-detail-screenshots h2 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.screenshot-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: var(--border-color);
+  transition: transform 0.3s ease;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+.screenshot-grid img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .game-detail-header {
+    flex-direction: column;
+  }
+
+  .game-detail-header img {
+    max-width: 100%;
+  }
+
+  .game-detail-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .screenshot-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }
 
 .loader {

@@ -24,6 +24,7 @@ const igdb = (endpoint) => {
 
       return res.json(result);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Authentication Failed', details: error.message });
     }
   };

@@ -19,17 +19,18 @@ function renderState(state, data = []) {
 
 function formatGames(gameData) {
     return gameData.map(g => ({
+        id: g.id,
         title: g.name,
         platform: g.platforms?.map(p => p.name).join(', ') || "N/A",
-        img: g.cover?.url 
-            ? `https:${g.cover.url.replace('t_thumb', 't_cover_big')}` 
+        img: g.cover?.url
+            ? `https:${g.cover.url.replace('t_thumb', 't_cover_big')}`
             : NO_IMAGE_URL
     }));
 }
 
 function displayGames(gamesList) {
     gameGrid.innerHTML = gamesList.map(game => `
-        <div class="game-card">
+        <div class="game-card" data-game-id="${game.id}">
             <img src="${game.img}" alt="${game.title}" onerror="this.src='${NO_IMAGE_URL}'" loading="lazy">
             <div class="game-info">
                 <h3>${game.title}</h3>
@@ -39,13 +40,24 @@ function displayGames(gamesList) {
     `).join('');
 }
 
+// So we don't have to deal with updating every time
+gameGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.game-card');
+    if (card) {
+        const gameId = card.getAttribute('data-game-id');
+        if (gameId) {
+            window.location.href = `/product.html?gameId=${gameId}`;
+        }
+    }
+});
+
 async function updateGameList() {
     const searchTerm = searchInput.value.trim();
     const platformId = platformFilter.value;
     
     renderState('loading');
 
-    let apicalypseQuery = `fields name, platforms.name, cover.url; limit 24;`;
+    let apiQuery = `fields name, platforms.name, cover.url; limit 24;`;
     let whereClause = `where cover != null & platforms != null`;
 
     if (platformId !== 'all') {
@@ -53,13 +65,13 @@ async function updateGameList() {
     }
 
     if (searchTerm) {
-        apicalypseQuery = `search "${searchTerm}"; ${apicalypseQuery} ${whereClause};`;
+        apiQuery = `search "${searchTerm}"; ${apiQuery} ${whereClause};`;
     } else {
-        apicalypseQuery += `${whereClause}; sort hypes desc;`;
+        apiQuery += `${whereClause}; sort hypes desc;`;
     }
 
     try {
-        const data = await query('games', apicalypseQuery);
+        const data = await query('games', apiQuery);
         
         if (!data || data.length === 0) {
             renderState('empty');

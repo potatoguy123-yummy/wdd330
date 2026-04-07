@@ -6,5 +6,8 @@ export async function query(endpoint, query) {
         headers: { 'Content-Type': 'text/plain' },
         body: query
     });
+    if (!response.ok) {
+        throw new Error({ message: await response.text() });
+    }
     return response.json();
 }
