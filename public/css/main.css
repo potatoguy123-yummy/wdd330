@@ -135,7 +135,7 @@ header {
   height: 24px;
 }
 
-/* Desktop: Logo | Spacer | Upload | About | Wishlist | Toggle */
+/* Desktop: Logo | Spacer | Upload | Wishlist | Toggle */
 @media (min-width: 601px) {
   .nav-container {
     grid-template-columns: auto 1fr auto auto auto auto;
@@ -153,14 +153,11 @@ header {
   .nav-links a:first-child {
     grid-column: 3;
   }
-  .nav-links a:nth-child(2) {
+  .nav-links a:last-child {
     grid-column: 4;
   }
-  .nav-links a:last-child {
-    grid-column: 5;
-  }
   .theme-toggle {
-    grid-column: 6;
+    grid-column: 5;
   }
 }
 
@@ -168,7 +165,6 @@ header {
    GameSearch | Theme Toggle
    Upload
    Wishlist
-   About
 */
 @media (max-width: 600px) {
   .nav-container {
