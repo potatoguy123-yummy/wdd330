@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Lookup - GameSearch</title>
+    <script src="/js/headerFooter.js" type="module"></script>
+    <link rel="stylesheet" href="/css/main.css">
+
+    <meta name="description" content="Calculate MD5 hash of files and check against the hasheous database">
+    <meta name="author" content="Ethan O'Brien">
+    <meta property="og:title" content="Hash Lookup">
+    <meta property="og:description" content="Calculate MD5 hash of files and check against the hasheous database">
+    <meta property="og:url" content="https://cse330.onrender.com/hash-lookup.html">
+
+    <script type="module" src="/js/hash-lookup.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header></header>
+    <main class="hash-lookup-page">
+        <div class="hash-lookup-container">
+            <h1>File Hash Lookup</h1>
+            <p>Upload a file to calculate its MD5 hash and check against the hasheous database</p>
+
+            <form id="hashForm" class="hash-form">
+                <div class="form-group">
+                    <label for="fileInput">Choose a file to hash:</label>
+                    <input type="file" id="fileInput" name="fileInput" required>
+                </div>
+
+                <button type="submit" id="hashButton">Calculate Hash</button>
+            </form>
+
+            <div id="resultContainer" class="result-container hidden">
+                <h2>Result</h2>
+                <div id="hashResult" class="hash-result"></div>
+            </div>
+
+            <div id="loader" class="loader hidden"></div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
