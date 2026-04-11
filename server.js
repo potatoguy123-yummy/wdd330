@@ -15,9 +15,9 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
-    if (NODE_ENV === "development") {
+    //if (NODE_ENV === "development") {
         console.log(`${req.method} ${req.url}`);
-    }
+    //}
     next();
 });
 
